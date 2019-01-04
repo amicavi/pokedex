@@ -16,7 +16,7 @@ class App extends Component {
         <header>
           <img src={logo} className="App-logo" alt="Pokemon logo" />
         </header>
-        <main className="col-xs-12 col-md-10 col-md-offset-1">
+        <main className="col-xs-12 col-lg-10 col-lg-offset-1">
           <DetailView />
           <SearchBar />
           <PokemonList />
