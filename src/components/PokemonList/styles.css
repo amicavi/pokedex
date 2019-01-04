@@ -7,11 +7,11 @@
     margin-top: 10px;
 }
   
-.pokemon-card .card-img {
+.card-img img {
     margin: auto;
 }
   
-.pokemon-card .card-id {
+.card-id {
     background-color: orange;
     width: 20%;
     border: 1px solid transparent;
@@ -21,10 +21,10 @@
     font-size: 11px;
 }
   
-.pokemon-card .card-name {
+.card-name {
     margin-bottom: 0px;
 }
   
-.pokemon-card .card-type {
+.card-type {
     color: #969696;
 }
