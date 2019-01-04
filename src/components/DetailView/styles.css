@@ -1,0 +1,31 @@
+#detail_view {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.card {
+    padding: 15px 0px;
+}
+
+#detail_view .title {
+    font-weight: 700;
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+.details hr {
+    border-top: 2px solid #eee;
+}
+
+.details table {
+    font-size: 9px;
+}
+
+.details table td:first-child {
+    font-weight: 700;
+}
+
+.card .pokeball {
+    padding: 40px;
+    margin: auto;
+}

@@ -1,0 +1,30 @@
+#pokemons_list {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+  
+.pokemon-card {
+    margin-top: 10px;
+}
+  
+.pokemon-card .card-img {
+    margin: auto;
+}
+  
+.pokemon-card .card-id {
+    background-color: orange;
+    width: 20%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    margin: auto;
+    font-size: 11px;
+}
+  
+.pokemon-card .card-name {
+    margin-bottom: 0px;
+}
+  
+.pokemon-card .card-type {
+    color: #969696;
+}

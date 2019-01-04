@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './img/logo-pokemon.png';
 import './App.css';
+
+import { DetailView } from './components/DetailView/index.js';
+import { SearchBar } from './components/SearchBar/index.js';
+import { PokemonList } from './components/PokemonList/index.js';
+
+
+// import {  } from "react-bootstrap";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <header>
+          <img src={logo} className="App-logo" alt="Pokemon logo" />
         </header>
+        <main className="col-md-10 col-md-offset-1">
+          <DetailView />
+          <SearchBar />
+          <PokemonList />
+        </main>
       </div>
     );
   }
