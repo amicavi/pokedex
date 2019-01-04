@@ -7,7 +7,7 @@ export class PokemonList extends Component {
         return ( 
             <section id="pokemons_list" className="col-sm-8 col-xs-12">
                 <div className="thumbnail col-xs-12">
-                    <div className="pokemon-card text-center col-xs-6 col-md-3">
+                    <div className="pokemon-card text-center col-xs-6 col-sm-4 col-md-3">
                         <div className="card-img">
                             <img className="img-responsive" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10075.png" alt="Pokemon look"></img>
                         </div>
@@ -17,7 +17,7 @@ export class PokemonList extends Component {
                             <p className="card-type"><span>Type: </span> Poison</p>
                         </div>
                     </div>
-                    <div className="pokemon-card text-center col-xs-6 col-md-3">
+                    <div className="pokemon-card text-center col-xs-6 col-sm-4 col-md-3">
                         <div className="card-img">
                             <img className="img-responsive" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Pokemon look"></img>
                         </div>
@@ -27,7 +27,7 @@ export class PokemonList extends Component {
                             <p className="card-type"><span>Type: </span> Poison</p>
                         </div>
                     </div>
-                    <div className="pokemon-card text-center col-xs-6 col-md-3">
+                    <div className="pokemon-card text-center col-xs-6 col-sm-4 col-md-3">
                         <div className="card-img">
                             <img className="img-responsive" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png" alt="Pokemon look"></img>
                         </div>
@@ -37,7 +37,7 @@ export class PokemonList extends Component {
                             <p className="card-type"><span>Type: </span> Poison</p>
                         </div>
                     </div>
-                    <div className="pokemon-card text-center col-xs-6 col-md-3">
+                    <div className="pokemon-card text-center col-xs-6 col-sm-4 col-md-3">
                         <div className="card-img">
                             <img className="img-responsive" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pokemon look"></img>
                         </div>

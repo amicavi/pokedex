@@ -13,18 +13,21 @@
   
 .card-id {
     background-color: orange;
-    width: calc(35px + 0.5vw);
-    border: 1px solid transparent;
     border-radius: 4px;
+    border: 1px solid transparent;
     color: #fff;
-    margin: auto;
     font-size: 11px;
+    line-height: 1.1;
+    margin: auto;
+    width: calc(35px + 0.5vw);
 }
   
 .card-name {
+    font-weight: 400;
     margin-bottom: 0px;
 }
   
 .card-type {
     color: #969696;
+    font-size: 13px;
 }
