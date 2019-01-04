@@ -6,16 +6,16 @@ export class DetailView extends Component {
     // state = {  }
     render() { 
         return ( 
-            <section id="detail_view" class="col-sm-4 col-xs-12">
-                <div class="card thumbnail col-xs-12">
-                    <div class="text-center title">
+            <section id="detail_view" className="col-sm-4 col-xs-12">
+                <div className="card thumbnail col-xs-12">
+                    <div className="text-center title">
                         <p>#001 - Bulbasaur</p>
                     </div>
-                    <div class="profile">
-                        <div class="col-xs-5">
-                            <img class="img-responsive" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Pokemon"></img>
+                    <div className="profile">
+                        <div className="col-xs-5">
+                            <img className="img-responsive" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Pokemon"></img>
                         </div>
-                        <div class="col-xs-7 stats">
+                        <div className="col-xs-7 stats">
                             <ul>
                                 <li>hello</li>
                                 <li>hello</li>
@@ -23,10 +23,10 @@ export class DetailView extends Component {
                                 <li>hello</li>
                             </ul>
                         </div>
-                        <div class="col-xs-12 details text-left">
+                        <div className="col-xs-12 details text-left">
                             <hr></hr>
                             <p>Profile</p>
-                            <table class="col-sm-6 col-xs-12">
+                            <table className="col-sm-6 col-xs-12">
                                 <tr>
                                     <td>Height:</td>
                                     <td>0.7 m</td>
@@ -44,7 +44,7 @@ export class DetailView extends Component {
                                     <td>Chlorophyll, Overgrow</td>
                                 </tr>
                             </table>
-                            <table class="col-sm-6 col-xs-12">
+                            <table className="col-sm-6 col-xs-12">
                                 <tr>
                                     <td>Weight:</td>
                                     <td>6.9 kg</td>
@@ -65,11 +65,11 @@ export class DetailView extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="card thumbnail col-xs-12">
-                    <div class="text-center title">
+                <div className="card thumbnail col-xs-12">
+                    <div className="text-center title">
                         <p>Empty state</p>
                     </div>
-                    <img src={pokeball} class="img-responsive pokeball" alt="detail view empty state"></img>
+                    <img src={pokeball} className="img-responsive pokeball" alt="detail view empty state"></img>
                 </div>
             </section>
         );
