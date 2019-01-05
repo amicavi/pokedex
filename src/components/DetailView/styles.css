@@ -30,7 +30,7 @@
 
 .profile .bar-front {
     height: 100%;
-    width: 50%;
+    /* width: 50%; */
     background: repeating-linear-gradient(-55deg, #5faf3d, #5faf3d 2px, #6dcc42 2px, #6dcc42 4px );
     border-radius: 3px 0px 0px 3px;
     vertical-align: middle;

@@ -31,11 +31,11 @@ class DetailView extends Component {
                             <table>
                                 <tbody>
                                 {this.state.profile.stats.map(stat => 
-                                    <tr>
+                                    <tr key={stat.name}>
                                         <td>{stat.name}</td>
                                         <td className="col-xs-12 non-padding">
                                             <div className="bar-back">
-                                                <div className="bar-front">
+                                                <div style={{width: stat.base_stat + '%'}} className="bar-front">
                                                     <p className="persentage"><span>{stat.base_stat}</span>%</p>
                                                 </div>
                                             </div>
@@ -51,7 +51,7 @@ class DetailView extends Component {
                             <table className="col-xs-12">
                                 <tbody>
                                     {this.state.profile.profile.map(detail => 
-                                        <tr>
+                                        <tr key={detail.name}>
                                             <td>{detail.name}</td>
                                             <td>{detail.value}</td>
                                         </tr>
