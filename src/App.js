@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import logo from './img/logo-pokemon.png';
 import './App.css';
 
-import { DetailView } from './components/DetailView/index.js';
-import { SearchBar } from './components/SearchBar/index.js';
-import { PokemonList } from './components/PokemonList/index.js';
+import { DetailView } from './components/DetailView/index.jsx';
+import { SearchBar } from './components/SearchBar/index.jsx';
+import { PokemonList } from './components/PokemonList/index.jsx';
 
 
 // import {  } from "react-bootstrap";
