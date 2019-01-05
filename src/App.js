@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './img/logo-pokemon.png';
 import './App.css';
 
-import { DetailView } from './components/DetailView/index.jsx';
+import DetailView from './components/DetailView/index.jsx';
 import { SearchBar } from './components/SearchBar/index.jsx';
 import PokemonCard from './components/PokemonCard/index.jsx';
 
