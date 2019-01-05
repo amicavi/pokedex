@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import logo from './img/logo-pokemon.png';
 import './App.css';
+import constants from './constants/index.js';
 
 import DetailView from './components/DetailView/index.jsx';
 import { SearchBar } from './components/SearchBar/index.jsx';
 import PokemonCard from './components/PokemonCard/index.jsx';
+import Pagination from './components/Pagination/index.jsx';
 
 class App extends Component {
   state = { 
     profile : {},
     isEmptyState : true,
-    pokemons : [{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/1\/","name":"bulbasaur"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/2\/","name":"ivysaur"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/3\/","name":"venusaur"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/4\/","name":"charmander"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/5\/","name":"charmeleon"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/6\/","name":"charizard"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/7\/","name":"squirtle"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/8\/","name":"wartortle"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/9\/","name":"blastoise"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/10\/","name":"caterpie"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/11\/","name":"metapod"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/12\/","name":"butterfree"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/13\/","name":"weedle"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/14\/","name":"kakuna"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/15\/","name":"beedrill"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/16\/","name":"pidgey"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/17\/","name":"pidgeotto"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/18\/","name":"pidgeot"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/19\/","name":"rattata"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/20\/","name":"raticate"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/21\/","name":"spearow"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/22\/","name":"fearow"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/23\/","name":"ekans"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/24\/","name":"arbok"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/25\/","name":"pikachu"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/26\/","name":"raichu"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/27\/","name":"sandshrew"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/28\/","name":"sandslash"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/29\/","name":"nidoran-f"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/30\/","name":"nidorina"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/31\/","name":"nidoqueen"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/32\/","name":"nidoran-m"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/33\/","name":"nidorino"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/34\/","name":"nidoking"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/35\/","name":"clefairy"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/36\/","name":"clefable"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/37\/","name":"vulpix"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/38\/","name":"ninetales"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/39\/","name":"jigglypuff"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/40\/","name":"wigglytuff"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/41\/","name":"zubat"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/42\/","name":"golbat"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/43\/","name":"oddish"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/44\/","name":"gloom"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/45\/","name":"vileplume"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/46\/","name":"paras"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/47\/","name":"parasect"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/48\/","name":"venonat"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/49\/","name":"venomoth"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/50\/","name":"diglett"}]
-    // pokemons : []
+    pokemons : [],
+    pages : {
+      current_offset:0,
+      previous:"",
+      next:"",
+      count: 0
+    }
   }
 
   getPokemonID = (url) => {
@@ -42,6 +49,27 @@ class App extends Component {
     )
   }
 
+  getPokemonList = (offset) => {
+    const url = constants.pagination.url + "?limit=" + constants.pagination.limit + "&offset=" + (offset ? offset : 0);
+    fetch(url)
+      .then( res => res.json() )
+      .then( json => {
+        this.setState({
+          pokemons: json.results,
+          pages : {
+            previous:json.previous,
+            current_offset:offset,
+            next:json.next,
+            count: json.count
+          }
+        })
+      });
+  }
+
+  componentDidMount = () => {
+    this.getPokemonList();
+  }
+
   render() {
     return (
       <div className="App">
@@ -56,6 +84,14 @@ class App extends Component {
               {this.renderPokemons()}
             </div>
           </section>
+          <Pagination 
+            previous={this.state.pages.previous}
+            next={this.state.pages.next}
+            current_offset={this.state.pages.current_offset}
+            count={this.state.pages.count}
+            url={constants.pagination.url}
+            limit={constants.pagination.limit}
+          />
         </main>
       </div>
     );
