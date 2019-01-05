@@ -7,7 +7,7 @@ export class PokemonList extends Component {
         // pokemons : []
     }
 
-    renderPokemons() {
+    renderPokemons = () => {
         if (this.state.pokemons.length === 0) return <h4>There isn't any pokemon match</h4>;
 
         return (
@@ -28,18 +28,18 @@ export class PokemonList extends Component {
         )
     }
 
-    getSourceImg(url) {
+    getSourceImg = (url) => {
         const matched_position = url.match(/pokemon.{1,}/ig)[0];
         const id = matched_position.match(/\d+/)[0];
         const source = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+ id +".png";
         return source;
     }
 
-    getFormattedID(id) {
+    getFormattedID = (id) => {
         return id.length < 3 ? this.getFormattedID(0 + id) : id;
     }
 
-    getPokemonID(url) {
+    getPokemonID = (url) => {
         const matched_position = url.match(/pokemon.{1,}/ig)[0];
         const id = matched_position.match(/\d+/)[0];
         const formated_id = this.getFormattedID(id);
@@ -47,9 +47,12 @@ export class PokemonList extends Component {
         return formated_id;
     }
 
-    // getPokemonType(url) {
+    // getPokemonType = (url) => {
     //     const matched_position = url.match(/pokemon.{1,}/ig)[0];
     //     const id = matched_position.match(/\d+/)[0];
+
+        // Should be here or the pokemons state should received?
+        // mmmm I think that if this is the component that need it.. should have it in here.
 
     // }
 

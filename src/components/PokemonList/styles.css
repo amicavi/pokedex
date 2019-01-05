@@ -26,9 +26,11 @@
 .card-name {
     font-weight: 400;
     margin-bottom: 0px;
+    text-transform: capitalize;
 }
   
 .card-type {
     color: #969696;
     font-size: 13px;
+    text-transform: capitalize;
 }
