@@ -1,6 +1,7 @@
-#pokemons_list {
+.pokemons_list {
     margin-top: 15px;
     margin-bottom: 15px;
+    min-height: 20vh;
 }
   
 .pokemon-card {
