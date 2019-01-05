@@ -12,10 +12,10 @@ class PokemonCard extends Component {
     }
 
     render() { 
-        const { pokemon, id} = this.props;
+        const { pokemon, id, onSelection} = this.props;
 
         return ( 
-            <div className="pokemon-card text-center col-xs-6 col-sm-4 col-md-3">
+            <button className="pokemon-card text-center col-xs-6 col-sm-4 col-md-3" onClick={() => onSelection(id)}>
                 <div className="card-img">
                     <img className="img-responsive" src={this.getSourceImg(id)} alt={pokemon.name}></img>
                 </div>
@@ -24,7 +24,7 @@ class PokemonCard extends Component {
                     <h5 className="card-name">{pokemon.name}</h5>
                     <p className="card-type"><span>Type: </span> Poison</p>
                 </div>
-            </div>
+            </button>
         );
     }
 }

@@ -18,6 +18,10 @@ class App extends Component {
     return id;
   }
 
+  pokemonSelectionHandle = (id) => {
+    console.log(id)
+  }
+
   renderPokemons = () => {
     if (this.state.pokemons.length === 0) return 
 
@@ -28,6 +32,7 @@ class App extends Component {
               key={pokemon.name}
               pokemon={pokemon} 
               id={this.getPokemonID(pokemon.url)}
+              onSelection={this.pokemonSelectionHandle}
             />
         )}
         </React.Fragment>
