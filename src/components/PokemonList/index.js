@@ -10,7 +10,7 @@ export class PokemonList extends Component {
         return ( 
             <section className="col-sm-8 col-xs-12">
                 <div className="pokemons_list thumbnail col-xs-12">
-                    {this.state.pokemons.length === 0 && "There isn't any pokemon match"}
+                    {this.state.pokemons.length === 0 && <h4>There isn't any pokemon match</h4>}
                     {this.state.pokemons.map(pokemon => 
                         <div className="pokemon-card text-center col-xs-6 col-sm-4 col-md-3">
                             <div className="card-img">
