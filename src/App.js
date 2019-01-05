@@ -8,6 +8,8 @@ import PokemonCard from './components/PokemonCard/index.jsx';
 
 class App extends Component {
   state = { 
+    profile : {},
+    isEmptyState : true,
     pokemons : [{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/1\/","name":"bulbasaur"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/2\/","name":"ivysaur"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/3\/","name":"venusaur"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/4\/","name":"charmander"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/5\/","name":"charmeleon"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/6\/","name":"charizard"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/7\/","name":"squirtle"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/8\/","name":"wartortle"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/9\/","name":"blastoise"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/10\/","name":"caterpie"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/11\/","name":"metapod"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/12\/","name":"butterfree"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/13\/","name":"weedle"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/14\/","name":"kakuna"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/15\/","name":"beedrill"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/16\/","name":"pidgey"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/17\/","name":"pidgeotto"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/18\/","name":"pidgeot"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/19\/","name":"rattata"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/20\/","name":"raticate"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/21\/","name":"spearow"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/22\/","name":"fearow"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/23\/","name":"ekans"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/24\/","name":"arbok"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/25\/","name":"pikachu"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/26\/","name":"raichu"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/27\/","name":"sandshrew"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/28\/","name":"sandslash"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/29\/","name":"nidoran-f"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/30\/","name":"nidorina"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/31\/","name":"nidoqueen"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/32\/","name":"nidoran-m"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/33\/","name":"nidorino"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/34\/","name":"nidoking"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/35\/","name":"clefairy"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/36\/","name":"clefable"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/37\/","name":"vulpix"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/38\/","name":"ninetales"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/39\/","name":"jigglypuff"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/40\/","name":"wigglytuff"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/41\/","name":"zubat"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/42\/","name":"golbat"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/43\/","name":"oddish"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/44\/","name":"gloom"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/45\/","name":"vileplume"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/46\/","name":"paras"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/47\/","name":"parasect"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/48\/","name":"venonat"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/49\/","name":"venomoth"},{"url":"http:\/\/pokeapi.salestock.net\/api\/v2\/pokemon\/50\/","name":"diglett"}]
     // pokemons : []
   }
@@ -20,6 +22,7 @@ class App extends Component {
 
   pokemonSelectionHandle = (id) => {
     console.log(id)
+    this.setState({isEmptyState : false, profile : { "name": "pikachu", "id": "025", "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png", "stats" :[{ "name": "hp", "base_stat": 35 },{ "name": "attack", "base_stat": 55 },{ "name": "defense", "base_stat": 40 },{ "name": "speed", "base_stat": 90 },{ "name": "Sp atk", "base_stat": 50 },{ "name": "Sp def", "base_stat": 50 }], "profile" :[{ "name" :"capture_rate", "value" : 190 },{ "name" :"egg_groups", "value" : "fairy, ground" },{ "name" :"abilities", "value" : "lightning-rod, static" },{ "name" :"gender_rate", "value" : 4 },{ "name" :"hatch_counter", "value" : 10 },{ "name" :"EVs", "value" : "0 Sp Att" }] }})
   }
 
   renderPokemons = () => {
@@ -29,10 +32,10 @@ class App extends Component {
         <React.Fragment>
         {this.state.pokemons.map(pokemon => 
             <PokemonCard 
-              key={pokemon.name}
-              pokemon={pokemon} 
-              id={this.getPokemonID(pokemon.url)}
-              onSelection={this.pokemonSelectionHandle}
+              key = {pokemon.name}
+              pokemon = {pokemon} 
+              id = {this.getPokemonID(pokemon.url)}
+              onSelection = {this.pokemonSelectionHandle}
             />
         )}
         </React.Fragment>
@@ -46,12 +49,12 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="Pokemon logo" />
         </header>
         <main className="col-xs-12 col-lg-10 col-lg-offset-1">
-          <DetailView />
+          <DetailView profile={this.state.profile} isEmptyState={this.state.isEmptyState}/>
           <SearchBar />
           <section className="col-sm-8 col-xs-12">
-                <div className="pokemons_list thumbnail col-xs-12">
-                  {this.renderPokemons()}
-                </div>
+            <div className="pokemons_list thumbnail col-xs-12">
+              {this.renderPokemons()}
+            </div>
           </section>
         </main>
       </div>
