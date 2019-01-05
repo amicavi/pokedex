@@ -27,40 +27,44 @@ export class DetailView extends Component {
                             <hr></hr>
                             <p>Profile</p>
                             <table className="col-sm-6 col-xs-12">
-                                <tr>
-                                    <td>Height:</td>
-                                    <td>0.7 m</td>
-                                </tr>
-                                <tr>
-                                    <td>Catch Rate:</td>
-                                    <td>0%</td>
-                                </tr>
-                                <tr>
-                                    <td>Egg Groups:</td>
-                                    <td>Monster, Grass</td>
-                                </tr>
-                                <tr>
-                                    <td>Abilities:</td>
-                                    <td>Chlorophyll, Overgrow</td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>Height:</td>
+                                        <td>0.7 m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Catch Rate:</td>
+                                        <td>0%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Egg Groups:</td>
+                                        <td>Monster, Grass</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abilities:</td>
+                                        <td>Chlorophyll, Overgrow</td>
+                                    </tr>
+                                </tbody>
                             </table>
                             <table className="col-sm-6 col-xs-12">
-                                <tr>
-                                    <td>Weight:</td>
-                                    <td>6.9 kg</td>
-                                </tr>
-                                <tr>
-                                    <td>Gender Ratio:</td>
-                                    <td>87.5% ♂ 12.5% ♀</td>
-                                </tr>
-                                <tr>
-                                    <td>Hatch steps:</td>
-                                    <td>5100</td>
-                                </tr>
-                                <tr>
-                                    <td>Evs:</td>
-                                    <td>1 5p Att</td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>Weight:</td>
+                                        <td>6.9 kg</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender Ratio:</td>
+                                        <td>87.5% ♂ 12.5% ♀</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hatch steps:</td>
+                                        <td>5100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Evs:</td>
+                                        <td>1 5p Att</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
