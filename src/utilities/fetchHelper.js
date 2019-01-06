@@ -13,7 +13,7 @@ export default {
         },
 
         pokemonSpecie : (api_url, id, cb, aditional_info) => {
-                cb(mockedPokemonSpecies)
+                cb(mockedPokemonSpecies, aditional_info)
         //     const url_to_fetch = api_url + "pokemon-species/" + id;
         //     fetch(url_to_fetch)
         //     .then( res => res.json() )
