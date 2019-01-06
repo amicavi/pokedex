@@ -26,22 +26,33 @@ class App extends Component {
     this.getPokemonList(page_offset)
   }
 
+  updateProfile = (profile) => {
+    this.setState({
+      profile: profile,
+      isEmptyState : false
+    })
+  }
+
+  parseProfileResponse = (info, id) => {
+    // const profile = Parser.pokemon_profile(response);
+    // const profile = { "name": "pikachu", "id": "025", "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png", "stats" :[{ "name": "hp", "base_stat": 35 },{ "name": "attack", "base_stat": 55 },{ "name": "defense", "base_stat": 40 },{ "name": "speed", "base_stat": 90 },{ "name": "Sp atk", "base_stat": 50 },{ "name": "Sp def", "base_stat": 50 }], "profile" :[{ "name" :"capture_rate", "value" : 190 },{ "name" :"egg_groups", "value" : "fairy, ground" },{ "name" :"abilities", "value" : "lightning-rod, static" },{ "name" :"gender_rate", "value" : 4 },{ "name" :"hatch_counter", "value" : 10 },{ "name" :"EVs", "value" : "0 Sp Att" }] }
+    // this.updateProfile(profile);
+  }
+
+  
+
   pokemonSelectionHandle = (id) => {
     console.log(id)
-    let pokemon_info;
-    let pokemon_specie;
+    const parseresponse = () => {
 
-    const OnSpeciesResponse = (response) => {
-      pokemon_specie = response;
     }
 
-    const onInfoResponse = (response) => {
-      FetchHelper.get.pokemonSpecies(constants.api_url, id, OnSpeciesResponse);
-      pokemon_info = response;
+    const addSpecieInfo = (info) => {
+      FetchHelper.get.pokemonSpecie(constants.api_url, id, parseresponse);
     }
+    FetchHelper.get.pokemonInfo(constants.api_url, id, addSpecieInfo);
 
-    FetchHelper.get.pokemonInfo(constants.api_url, id, onInfoResponse);
-    // this.setState({isEmptyState : false, profile : { "name": "pikachu", "id": "025", "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png", "stats" :[{ "name": "hp", "base_stat": 35 },{ "name": "attack", "base_stat": 55 },{ "name": "defense", "base_stat": 40 },{ "name": "speed", "base_stat": 90 },{ "name": "Sp atk", "base_stat": 50 },{ "name": "Sp def", "base_stat": 50 }], "profile" :[{ "name" :"capture_rate", "value" : 190 },{ "name" :"egg_groups", "value" : "fairy, ground" },{ "name" :"abilities", "value" : "lightning-rod, static" },{ "name" :"gender_rate", "value" : 4 },{ "name" :"hatch_counter", "value" : 10 },{ "name" :"EVs", "value" : "0 Sp Att" }] }})
+    this.setState({isEmptyState : false, profile : { "name": "pikachu", "id": "025", "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png", "stats" :[{ "name": "hp", "base_stat": 35 },{ "name": "attack", "base_stat": 55 },{ "name": "defense", "base_stat": 40 },{ "name": "speed", "base_stat": 90 },{ "name": "Sp atk", "base_stat": 50 },{ "name": "Sp def", "base_stat": 50 }], "profile" :[{ "name" :"capture_rate", "value" : 190 },{ "name" :"egg_groups", "value" : "fairy, ground" },{ "name" :"abilities", "value" : "lightning-rod, static" },{ "name" :"gender_rate", "value" : 4 },{ "name" :"hatch_counter", "value" : 10 },{ "name" :"EVs", "value" : "0 Sp Att" }] }})
   }
 
   updatePokemonList = (pokemon_list, offset) => {
@@ -56,11 +67,26 @@ class App extends Component {
     })
   }
 
+  addPokemonType = (pokemons, offset) => {
+    const parsed_list = [];
+    const pushPokemonItem = (info, pokemon) => {
+      pokemon.type = info.types[0].type.name;
+      parsed_list.push(pokemon);
+    }
+    
+    pokemons.results.forEach(function(pokemon){ 
+      FetchHelper.get.pokemonInfo(constants.api_co, pokemon.namem, pushPokemonItem, pokemon)
+    })
+
+    pokemons.results = parsed_list
+    this.updatePokemonList(pokemons, offset);
+  }
+
   getPokemonList = (offset_param) => {
-    const url = constants.pagination.url;
+    const url = constants.api_url;
     const limit = constants.pagination.limit;
     const offset = offset_param ? offset_param : 0
-    FetchHelper.get.pokemonList(offset, url, limit, this.updatePokemonList)
+    FetchHelper.get.pokemonList(offset, url, limit, this.addPokemonType)
   }
 
   componentDidMount = () => {
