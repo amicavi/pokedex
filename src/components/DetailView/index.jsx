@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './styles.css';
 import pokeball from './img/pokeball.png';
-import Handlers from '../../utilities/handlers.js';
+// import Handlers from '../../utilities/handlers.js';
+import Parser from './Parser.js';
 
 class DetailView extends Component {
 
@@ -19,7 +20,7 @@ class DetailView extends Component {
 
     componentDidUpdate(prevID){
         if (prevID.id !== this.props.id) {
-            Handlers.getPokemonDetails(this.props.id, this.updateProfile)
+            Parser.getPokemonDetails(this.props.id, this.updateProfile)
         }
     }
 

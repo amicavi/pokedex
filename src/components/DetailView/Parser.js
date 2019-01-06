@@ -1,5 +1,5 @@
-import FetchHelper from '../utilities/fetchHelper.js';
-import constants from '../utilities/constants.js';
+import FetchHelper from '../../utilities/fetchHelper.js';
+import constants from '../../utilities/constants.js';
 
 export default {
 
@@ -27,6 +27,18 @@ export default {
                     "base_stat": stat.base_stat
                 });
             })
+            stats_list.sort(function (a, b) {
+                if(a.name === "hp"){
+                    return -2;
+                }
+                if (a.name > b.name) {
+                  return 1;
+                }
+                if (a.name < b.name) {
+                  return -1;
+                }
+                return 0;
+              });
             return stats_list;
         }
 
@@ -54,27 +66,21 @@ export default {
                 "img" : info.sprites.front_default,
                 "stats" : getStats(info.stats),
                 "profile" :[{
-                        // pokemon-species/id
                         "name" :"Capture Rate",
                         "value" : species.capture_rate
                     },{
-                        // pokemon-species/id
                         "name" :"Egg Groups",
                         "value" : getEggGropus(species.egg_groups)
                     },{
-                        // /pokemon/id
                         "name" :"Abilities",
                         "value" : getAbilities(info.abilities)
                     },{
-                        // pokemon-species/id
                         "name" :"Gender Rate",
                         "value" : species.gender_rate
                     },{
-                        // pokemon-species/id
                         "name" :"Hatch Counter",
                         "value" : species.hatch_counter
                     },{
-                        // /pokemon/id (abilities)
                         "name" :"EVs",
                         "value" : getAttackEffort(info.stats)
                 }]
