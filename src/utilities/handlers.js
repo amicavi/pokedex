@@ -7,12 +7,13 @@ export default {
         const addPokemonType = (pokemons, offset) => {
             const parsed_list = [];
             const pushPokemonItem = (info, pokemon) => {
-              pokemon.type = info.types[0].type.name;
-              parsed_list.push(pokemon);
+                pokemon.name = pokemon.name.replace(/-/g, " ");
+                pokemon.type = info.types[0].type.name.replace(/-/g, " ");;
+                parsed_list.push(pokemon);
             }
             
             pokemons.results.forEach(function(pokemon){ 
-              FetchHelper.get.pokemonInfo(constants.api_co, pokemon.namem, pushPokemonItem, pokemon)
+                FetchHelper.get.pokemonInfo(constants.api_co, pokemon.name, pushPokemonItem, pokemon)
             })
         
             pokemons.results = parsed_list
@@ -42,6 +43,12 @@ export default {
         const getStats = (raw_stats) => {
             let stats_list = [];
             raw_stats.forEach(function(stat){
+                if (/special\W(attack|defense)/i.test(stat.stat.name)) {
+                    const splited_name = stat.stat.name.split("-");
+                    const prefix = splited_name[0].replace("special", "sp ")
+                    const subfix = splited_name[1].replace("attack", "atk").replace("defense", "def")
+                    stat.stat.name = prefix + subfix;
+                }
                 stats_list.push({
                     "name": stat.stat.name,
                     "base_stat": stat.base_stat
@@ -53,7 +60,8 @@ export default {
         const getAbilities = (raw_abilities) => {
             let abilities_list = [];
             raw_abilities.forEach(function(ability){
-                abilities_list.push(ability.ability.name);
+                const parsed_name = ability.ability.name.replace(/-/g, " ")
+                abilities_list.push(parsed_name);
             })
             return abilities_list.join(", ");
         }
