@@ -3,33 +3,6 @@ import constants from '../utilities/constants.js';
 
 export default {
 
-    getPokemonList : (offset, cb) => {
-        const addPokemonType = (pokemons, offset) => {
-            const parsed_list = [];
-            const pushPokemonItem = (info, pokemon) => {
-                pokemon.name = pokemon.name.replace(/-/g, " ");
-                pokemon.type = info.types[0].type.name.replace(/-/g, " ");;
-                parsed_list.push(pokemon);
-            }
-            
-            pokemons.results.forEach(function(pokemon){ 
-                FetchHelper.get.pokemonInfo(constants.api_co, pokemon.name, pushPokemonItem, pokemon)
-            })
-        
-            pokemons.results = parsed_list
-            cb(pokemons, offset);
-        }
-        
-        const getList = (offset_param) => {
-        const url = constants.api_url;
-        const limit = constants.pagination.limit;
-        const offset = offset_param ? offset_param : 0
-        FetchHelper.get.pokemonList(offset, url, limit, addPokemonType)
-        }
-
-        getList(offset)
-    },
-
     getPokemonDetails : (id, cb) => {
 
         const getEggGropus = (raw_list) => {
@@ -39,7 +12,7 @@ export default {
             })
             return abilities_list.join(", ");
         }
-        
+
         const getStats = (raw_stats) => {
             let stats_list = [];
             raw_stats.forEach(function(stat){
@@ -66,9 +39,9 @@ export default {
             return abilities_list.join(", ");
         }
 
-        const getAttackEffort = (stats_list) => {            
+        const getAttackEffort = (stats_list) => {
             const sp_attk_item = stats_list.filter(function(item) {
-                return item.stat.name == "special-attack"
+                return item.stat.name === "special-attack"
             })
 
             return sp_attk_item.effort ? sp_attk_item.effort : 0;
@@ -112,7 +85,7 @@ export default {
         const addSpecieInfo = (info) => {
             FetchHelper.get.pokemonSpecie(constants.api_url, id, parseresponse, info);
         }
-      
+
         FetchHelper.get.pokemonInfo(constants.api_url, id, addSpecieInfo);
     }
 };
