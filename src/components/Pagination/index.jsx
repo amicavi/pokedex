@@ -19,13 +19,11 @@ class Pagination extends Component {
       page_number ++;
       offset = offset + limit;
     }
-    console.log(pages);
     return pages;
   }
 
   render() {
     const { previous, next, current_page, count, limit, onPaginationClick} = this.props;
-    console.log("current_page",current_page);
 
     return (
       <nav aria-label="Page navigation">
