@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-
 import constants from '../../utilities/constants.js';
 import FetchHelper from '../../utilities/fetchHelper.js';
-
 import PokemonCard from '../PokemonCard/index.jsx';
 import Pagination from '../Pagination/index.jsx';
+
 class PokemonList extends Component {
     state = {
         pokemon_list : [],

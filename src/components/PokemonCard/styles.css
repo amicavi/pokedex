@@ -3,7 +3,7 @@
     margin-bottom: 15px;
     min-height: 20vh;
 }
-  
+
 .pokemon-card {
     margin-top: 10px;
     background: none;
@@ -22,7 +22,7 @@
 .card-img img {
     margin: auto;
 }
-  
+
 .card-id {
     background-color: orange;
     border-radius: 4px;
@@ -33,13 +33,13 @@
     margin: auto;
     width: calc(35px + 0.5vw);
 }
-  
+
 .card-name {
     font-weight: 400;
     margin-bottom: 0px;
     text-transform: capitalize;
 }
-  
+
 .card-type {
     color: #969696;
     font-size: 13px;

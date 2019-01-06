@@ -11,10 +11,10 @@ class PokemonCard extends Component {
         return id.length < 3 ? this.getFormattedID(0 + id) : id;
     }
 
-    render() { 
+    render() {
         const { pokemon, id, onSelection} = this.props;
 
-        return ( 
+        return (
             <button className="pokemon-card text-center col-xs-6 col-sm-4 col-md-3" onClick={() => onSelection(id)}>
                 <div className="card-img">
                     <img className="img-responsive" src={this.getSourceImg(id)} alt={pokemon.name}></img>
@@ -28,5 +28,5 @@ class PokemonCard extends Component {
         );
     }
 }
- 
+
 export default PokemonCard;

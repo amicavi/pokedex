@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './styles.css';
 
 class Pagination extends Component {
-  
+
   getPages = (count, limit, current_page, current_offset) => {
     const total_pages = Math.ceil(count / limit);
     const page_limit = current_page > 2 ? current_page + 2 : 4;
@@ -36,7 +36,7 @@ class Pagination extends Component {
               </button>
             </li>
           )}
-          { 
+          {
             this.getPages(count, limit, current_page, current_offset).map(page => (
               <li key={page.page_number}>
                 <button className={"page " + page.active} onClick={()=> onPaginationClick(page.offset)}>
