@@ -1,53 +1,56 @@
 import React, { Component } from "react";
+import './styles.css';
 
 class Pagination extends Component {
   
-  getPages = (count, limit, url, current_offset) => {
+  getPages = (count, limit, current_page) => {
     const total_pages = Math.ceil(count / limit);
-    const partial_url = url  + "?limit=" + limit + "&offset=";
-    let page_number = 1;
-    let offset = 0;
+    const page_limit = current_page > 2 ? current_page + 2 : 4;
+    let page_number = current_page > 2 ? current_page - 2 : 0;
+    let offset = current_page > 0 ? (page_number * 50) : 0;
     let pages = [];
 
-    while (page_number <= total_pages) {
+    while (page_number <= page_limit && page_limit <= total_pages) {
       pages.push({
-        url: partial_url + offset,
+        offset: offset,
         page_number: page_number,
-        active: offset === current_offset ? "active" : ""
+        active: page_number === current_page ? "active" : ""
       })
       page_number ++;
       offset = offset + limit;
     }
-
+    console.log(pages);
     return pages;
   }
 
   render() {
-    const { previous, next, current_offset, count, url, limit} = this.props;
+    const { previous, next, current_page, count, limit, onPaginationClick} = this.props;
+    console.log("current_page",current_page);
+
     return (
       <nav aria-label="Page navigation">
         <ul className="pagination">
           {previous != null && (
             <li>
-              <a href={previous} aria-label="Previous" onClick="handleClick">
+              <button className="page" aria-label="Previous" onClick={()=> onPaginationClick(current_page - limit)}>
                 <span aria-hidden="true">&laquo;</span>
-              </a>
+              </button>
             </li>
           )}
           { 
-            this.getPages(count, limit, url, current_offset).map(page => (
+            this.getPages(count, limit, current_page).map(page => (
               <li key={page.page_number}>
-                <a href={page.url} className={page.active} onClick="handleClick">
+                <button className={"page " + page.active} onClick={()=> onPaginationClick(page.offset)}>
                   {page.page_number}
-                </a>
+                </button>
               </li>
             ))
           }
           {next != null && (
             <li>
-              <a href={next} aria-label="Next" onClick="handleClick">
+              <button className="page" aria-label="Next" onClick={()=> onPaginationClick(current_page + limit)}>
                 <span aria-hidden="true">&raquo;</span>
-              </a>
+              </button>
             </li>
           )}
         </ul>
