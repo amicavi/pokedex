@@ -8,7 +8,7 @@ import DetailView from './components/DetailView/index.jsx';
 import PokemonList from './components/PokemonList/index.jsx';
 
 class App extends Component {
-  state = { 
+  state = {
     profile : {},
     isEmptyState : true,
   }
@@ -24,7 +24,7 @@ class App extends Component {
     console.log(id)
     Handlers.getPokemonDetails(id, this.updateProfile)
   }
-  
+
   render() {
     return (
       <div className="App">
@@ -34,7 +34,7 @@ class App extends Component {
         <main className="col-xs-12 col-lg-10 col-lg-offset-1">
           <DetailView profile={this.state.profile} isEmptyState={this.state.isEmptyState}/>
           <SearchBar />
-          <PokemonList 
+          <PokemonList
             selection_handler = {this.pokemonSelectionHandle}
           />
         </main>
