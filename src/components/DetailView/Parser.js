@@ -32,13 +32,13 @@ export default {
                     return -2;
                 }
                 if (a.name > b.name) {
-                  return 1;
+                    return 1;
                 }
                 if (a.name < b.name) {
-                  return -1;
+                    return -1;
                 }
                 return 0;
-              });
+            });
             return stats_list;
         }
 
@@ -66,23 +66,23 @@ export default {
                 "img" : info.sprites.front_default,
                 "stats" : getStats(info.stats),
                 "profile" :[{
-                        "name" :"Capture Rate",
-                        "value" : species.capture_rate
-                    },{
-                        "name" :"Egg Groups",
-                        "value" : getEggGropus(species.egg_groups)
-                    },{
-                        "name" :"Abilities",
-                        "value" : getAbilities(info.abilities)
-                    },{
-                        "name" :"Gender Rate",
-                        "value" : species.gender_rate
-                    },{
-                        "name" :"Hatch Counter",
-                        "value" : species.hatch_counter
-                    },{
-                        "name" :"EVs",
-                        "value" : getAttackEffort(info.stats)
+                    "name" :"Capture Rate",
+                    "value" : species.capture_rate
+                },{
+                    "name" :"Egg Groups",
+                    "value" : getEggGropus(species.egg_groups)
+                },{
+                    "name" :"Abilities",
+                    "value" : getAbilities(info.abilities)
+                },{
+                    "name" :"Gender Rate",
+                    "value" : species.gender_rate
+                },{
+                    "name" :"Hatch Counter",
+                    "value" : species.hatch_counter
+                },{
+                    "name" :"EVs",
+                    "value" : getAttackEffort(info.stats)
                 }]
             }
             cb(poke_profile);

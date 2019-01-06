@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './styles.css';
 import pokeball from './img/pokeball.png';
-// import Handlers from '../../utilities/handlers.js';
 import Parser from './Parser.js';
 
 class DetailView extends Component {
