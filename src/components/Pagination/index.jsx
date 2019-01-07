@@ -29,7 +29,7 @@ class Pagination extends Component {
     return (
       <nav aria-label="Page navigation">
         <ul className="pagination">
-          {previous != null && (
+          {previous && (
             <li>
               <button className="page" aria-label="Previous" onClick={()=> onPaginationClick(current_offset - limit)}>
                 <span aria-hidden="true">&laquo;</span>
@@ -45,7 +45,7 @@ class Pagination extends Component {
               </li>
             ))
           }
-          {next != null && (
+          {next && (
             <li>
               <button className="page" aria-label="Next" onClick={()=> onPaginationClick(current_offset + limit)}>
                 <span aria-hidden="true">&raquo;</span>
