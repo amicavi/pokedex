@@ -17,8 +17,8 @@ class DetailView extends Component {
         })
     }
 
-    componentDidUpdate(prevID){
-        if (prevID.id !== this.props.id) {
+    componentDidUpdate(oldProps){
+        if (oldProps.id !== this.props.id) {
             Parser.getPokemonDetails(this.props.id, this.updateProfile)
         }
     }
