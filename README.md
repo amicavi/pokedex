@@ -4,7 +4,7 @@ This is my pokedex that allow you to:
 
 - Get the paginated list of the Pomekons
 - Show detail view of a selected pokemon
-**(Note: this feature is mocked right now, it will show you always the pikachu data since I tried hard but the api is giving me an CORS error and I also tried with a backup URL that is very slow or some times it brokes)**
+**(Note: this feature is slow because the api has some problems even CORS errors)**
 - Search pokemons by name or id
 
 ## Instructions to run this project
