@@ -22,7 +22,8 @@ class DetailView extends Component {
     componentDidUpdate(oldProps){
         if (oldProps.id !== this.props.id) {
             this.setState({
-                isLoading : true
+                isLoading : true,
+                isEmptyState : true,
             })
             Parser.getPokemonDetails(this.props.id, this.updateProfile)
         }
