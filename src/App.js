@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './img/logo-pokemon.png';
+import logo from './assets/logo-pokemon.png';
 import './App.css';
 
 import SearchBar from './components/SearchBar/index.jsx';

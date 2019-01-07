@@ -122,6 +122,10 @@ class PokemonList extends Component {
                 }
 
                 this.addTypeAndImage(parsed_list);
+            }else{
+                this.setState({
+                    pokemon_list: [],
+                })
             }
         }
     }
@@ -139,7 +143,7 @@ class PokemonList extends Component {
                 <div className="pokemons_list thumbnail col-xs-12">
                     {isEmptyList? (
                         <div className="col-xs-12">
-                            <h4>There isn't pokemons to show</h4>
+                            <h4>There aren't pokemons to show</h4>
                         </div>
                     ) : (
                         <React.Fragment>
