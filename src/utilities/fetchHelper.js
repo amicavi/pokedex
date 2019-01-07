@@ -19,7 +19,7 @@ export default {
         //     .then( res => res.json() )
         //     .then(json => {
         //         console.log(json)
-        //         // this.cb(json, id);
+        //         cb(json, aditional_info);
         //     })
         },
 
@@ -33,7 +33,7 @@ export default {
             // })
             // .then(json => {
             //     console.log(json)
-            //     cb(json);
+            //     cb(json, aditional_info);
             // })
         },
 
