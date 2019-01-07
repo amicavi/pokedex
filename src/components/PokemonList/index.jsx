@@ -16,8 +16,10 @@ class PokemonList extends Component {
     }
 
     paginationClickHandler = (page_offset) => {
-        // if complete list perfome other action
-        this.getPokemonList(page_offset, this.updatePokemonList)
+        if (this.props.filtered_list) {
+            console.log("new list!", this.props.filtered_list)
+        }
+        this.getPokemonList(page_offset)
     }
 
     getPokemonID = (url) => {
@@ -30,43 +32,65 @@ class PokemonList extends Component {
         this.setState({
             pokemon_list: pokemon_list.results,
             pages : {
-            previous:pokemon_list.previous,
-            current_page: offset ? (offset/50) : 0,
-            next:pokemon_list.next,
-            count: pokemon_list.count
+                previous:pokemon_list.previous,
+                current_page: offset ? (offset/50) : 0,
+                next:pokemon_list.next,
+                count: pokemon_list.count
             }
         })
     }
 
-    getPokemonList = (offset, cb) => {
-        const addPokemonType = (pokemons, offset) => {
-            const parsed_list = [];
-            const pushPokemonItem = (info, pokemon) => {
-                pokemon.name = pokemon.name.replace(/-/g, " ");
-                pokemon.type = info.types[0].type.name.replace(/-/g, " ");;
-                parsed_list.push(pokemon);
-            }
-
-            pokemons.results.forEach(function(pokemon){
-                FetchHelper.get.pokemonInfo(constants.api_co, pokemon.name, pushPokemonItem, pokemon)
-            })
-
-            pokemons.results = parsed_list
-            cb(pokemons, offset);
+    addTypeAndImage = (pokemons, offset) => {
+        const parsed_list = [];
+        const pushPokemonItem = (info, pokemon) => {
+            pokemon.name = pokemon.name.replace(/-/g, " ");
+            pokemon.type = info.types[0].type.name.replace(/-/g, " ");
+            // pokemon.image = info.sprites.front_default CORS not allow get image
+            parsed_list.push(pokemon);
         }
 
+        pokemons.results.forEach(function(pokemon){
+            FetchHelper.get.pokemonInfo(constants.api_co, pokemon.name, pushPokemonItem, pokemon)
+        })
+
+        pokemons.results = parsed_list
+        this.updatePokemonList(pokemons, offset);
+    }
+
+    getPokemonList = (offset) => {
         const getList = (offset_param) => {
             const url = constants.api_url;
             const limit = constants.pagination.limit;
             const offset = offset_param ? offset_param : 0
-            FetchHelper.get.pokemonList(offset, url, limit, addPokemonType)
+            FetchHelper.get.pokemonList(offset, url, limit, this.addTypeAndImage)
         }
 
         getList(offset)
     }
 
+    componentDidUpdate = (oldProps) => {
+        if (oldProps.filtered_input !== this.props.filtered_input) {
+            if (this.props.filtered_list.length > 0) {
+                console.log("new list!!!!", this.props.filtered_list)
+                const parsed_list = {
+                    results: this.props.filtered_list,
+                    current_page:0,
+                    previous:"",
+                    next:"",
+                    count : this.props.filtered_list.length
+                }
+
+                this.addTypeAndImage(parsed_list);
+            }
+        }
+    }
+
     componentDidMount = () => {
-        this.getPokemonList(null, this.updatePokemonList);
+        console.log(this.props.filtered_list)
+        if (this.props.filtered_list.length > 0) {
+            console.log("new list!!!!", this.props.filtered_list)
+        }
+        this.getPokemonList();
     }
 
     render() {
