@@ -8,18 +8,22 @@ import PokemonList from './components/PokemonList/index.jsx';
 
 class App extends Component {
     state = {
-            selected_pokemon_id : "",
-            filtered_list : []
+        selected_pokemon_id : "",
+        filtered_list : [],
+        filtered_input: ""
     }
 
     pokemonSelectionHandle = (id) => {
         this.setState({
-            selected_pokemon_id: id,
+            selected_pokemon_id: id
         })
     }
 
-    onNewFilteredList = (new_list) => {
-        console.log(new_list);
+    onNewFilteredList = (newList, filterInput) => {
+        this.setState({
+            filtered_list: newList,
+            filtered_input: filterInput
+        })
     }
 
     render() {
@@ -38,6 +42,7 @@ class App extends Component {
                     <PokemonList
                         selection_handler = {this.pokemonSelectionHandle}
                         filtered_list = {this.state.filtered_list}
+                        filtered_input = {this.state.filtered_input}
                     />
                 </main>
             </div>
