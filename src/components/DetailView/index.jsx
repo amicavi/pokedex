@@ -8,31 +8,37 @@ class DetailView extends Component {
     state = {
         profile: [],
         isEmptyState : true,
+        isLoading : false
     }
 
     updateProfile = (profile) => {
         this.setState({
             profile: profile,
-            isEmptyState : false
+            isEmptyState : false,
+            isLoading : false
         })
     }
 
     componentDidUpdate(oldProps){
         if (oldProps.id !== this.props.id) {
+            this.setState({
+                isLoading : true
+            })
             Parser.getPokemonDetails(this.props.id, this.updateProfile)
         }
     }
 
     render() {
+        const isLoading = this.state.isLoading;
         const isEmptyState = this.state.isEmptyState;
         return (
             <section id="detail_view" className="col-sm-4 col-xs-12">
                 {isEmptyState ? (
                     <div className="card thumbnail col-xs-12">
                         <div className="text-center title">
-                            <p>Empty state</p>
+                            <p>{!isLoading? "Empty state": "Loading..."}</p>
                         </div>
-                        <img src={pokeball} className="img-responsive pokeball" alt="detail view empty state"></img>
+                        <img src={pokeball} className={"img-responsive pokeball" + (isLoading ? " rotate-animation" : "")} alt="detail view empty state"></img>
                     </div>
                 ) : (
                     <div className="card thumbnail col-xs-12">

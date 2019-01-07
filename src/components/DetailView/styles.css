@@ -21,6 +21,11 @@
     margin: auto;
 }
 
+.rotate-animation {
+    animation: image-spin infinite 20s linear;
+    height: 40vmin;
+}
+
 .profile table td:first-child {
     padding-right: 5px;
     text-align: right;
@@ -72,3 +77,12 @@
 .non-padding {
     padding: 0px;
 }
+
+@keyframes image-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
