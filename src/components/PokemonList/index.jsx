@@ -10,8 +10,8 @@ class PokemonList extends Component {
         filtered_pages : [],
         pages : {
             current_page: 0,
-            previous:"",
-            next:"",
+            previous: null,
+            next: null,
             count: 0
         }
     }
@@ -117,7 +117,7 @@ class PokemonList extends Component {
                     results: this.props.filtered_list.slice(0,50),
                     current_page:0,
                     previous:null,
-                    next: constants.pagination.limit.toString(),
+                    next: this.props.filtered_list.length > constants.pagination.limit? constants.pagination.limit : null,
                     count : this.props.filtered_list.length
                 }
 

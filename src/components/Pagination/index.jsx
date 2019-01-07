@@ -47,7 +47,7 @@ class Pagination extends Component {
               </li>
             ))
           }
-          {next && (
+          {next !== null && (
             <li>
               <button className="page" aria-label="Next" onClick={()=> onPaginationClick(current_offset + limit)}>
                 <span aria-hidden="true">&raquo;</span>
