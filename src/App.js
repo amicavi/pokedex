@@ -9,12 +9,17 @@ import PokemonList from './components/PokemonList/index.jsx';
 class App extends Component {
     state = {
             selected_pokemon_id : "",
+            filtered_list : []
     }
 
     pokemonSelectionHandle = (id) => {
         this.setState({
             selected_pokemon_id: id,
         })
+    }
+
+    onNewFilteredList = (new_list) => {
+        console.log(new_list);
     }
 
     render() {
@@ -24,10 +29,15 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="Pokemon logo" />
                 </header>
                 <main className="col-xs-12 col-lg-10 col-lg-offset-1">
-                    <DetailView id={this.state.selected_pokemon_id}/>
-                    <SearchBar />
+                    <DetailView
+                        id={this.state.selected_pokemon_id}
+                    />
+                    <SearchBar
+                        onNewList={this.onNewFilteredList}
+                    />
                     <PokemonList
                         selection_handler = {this.pokemonSelectionHandle}
+                        filtered_list = {this.state.filtered_list}
                     />
                 </main>
             </div>

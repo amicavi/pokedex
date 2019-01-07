@@ -18,7 +18,7 @@ class SearchBar extends Component {
             return regex.test(pokemon.url);
         });
 
-        console.log(filtered_list);
+        this.props.onNewList(filtered_list)
     }
 
     filterPokemonsByName = (name) => {
@@ -27,7 +27,7 @@ class SearchBar extends Component {
             return regex.test(pokemon.name);
         });
 
-        console.log(filtered_list);
+        this.props.onNewList(filtered_list)
     }
 
     handleChange = (e) => {
@@ -43,10 +43,8 @@ class SearchBar extends Component {
         e.stopPropagation();
         if (/enter/i.test(e.key)) {
             if(!isNaN(parseInt(this.state.input_value))){
-                console.log("filterPokemonsById");
                 this.filterPokemonsById(this.state.input_value)
             }else{
-                console.log("filterPokemonsByName");
                 this.filterPokemonsByName(this.state.input_value)
             }
         }
