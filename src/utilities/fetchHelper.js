@@ -35,6 +35,15 @@ export default {
             //     console.log(json)
             //     cb(json);
             // })
+        },
+
+        fullPokemonList : (api_url, cb) => {
+            const url_to_fetch = api_url + "pokemon/";
+            fetch(url_to_fetch)
+            .then( res => res.json() )
+            .then(json => {
+                cb(json);
+            })
         }
     }
 };
