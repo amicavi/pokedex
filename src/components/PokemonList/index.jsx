@@ -89,13 +89,12 @@ class PokemonList extends Component {
     }
 
     prepareToUpdate = (pokemon_list, offset) => {
+        let chunked_list;
         if (this.props.filtered_list.length > constants.pagination.limit) {
-            const chunked_list = this.listIntoChuncks(this.props.filtered_list)
-            this.updatePokemonList(pokemon_list, offset, chunked_list);
-        } else {
-            pokemon_list.results = this.sortPokemonList(pokemon_list.results)
-            this.updatePokemonList(pokemon_list, offset);
+            chunked_list = this.listIntoChuncks(this.props.filtered_list)
         }
+        pokemon_list.results = this.sortPokemonList(pokemon_list.results)
+        this.updatePokemonList(pokemon_list, offset, chunked_list);
     }
 
     addTypeAndImage = (pokemons, offset) => {
@@ -140,7 +139,6 @@ class PokemonList extends Component {
                     next: this.props.filtered_list.length > constants.pagination.limit? constants.pagination.limit : null,
                     count : this.props.filtered_list.length
                 }
-
                 this.addTypeAndImage(parsed_list);
             }else{
                 this.setState({
