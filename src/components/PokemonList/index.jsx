@@ -54,7 +54,7 @@ class PokemonList extends Component {
     updatePokemonList = (pokemon_list, offset, filtered_pages) => {
         this.setState({
             pokemon_list: pokemon_list.results,
-            filtered_pages: filtered_pages ? filtered_pages : this.state.filtered_pages,
+            filtered_pages: filtered_pages ? filtered_pages : [],
             pages : {
                 previous:pokemon_list.previous,
                 current_page: offset ? (offset/constants.pagination.limit): 0,
@@ -131,6 +131,15 @@ class PokemonList extends Component {
 
     componentDidUpdate = (oldProps, oldState) => {
         if (oldProps.filtered_input !== this.props.filtered_input) {
+            console.log('new filter input', this.props.filtered_input)
+            console.log("empty input? ",this.props.filtered_input.length === 0)
+            if(this.props.filtered_input.length === 0 ){
+                console.log("pokemon list again")
+                this.getPokemonList();
+                this.setState({
+                    filtered_pages : [],
+                })
+            }
             if (this.props.filtered_list.length > 0) {
                 const parsed_list = {
                     results: this.props.filtered_list.slice(0,50),
@@ -141,10 +150,12 @@ class PokemonList extends Component {
                 }
                 this.addTypeAndImage(parsed_list);
             }else{
+                console.log('not length')
                 this.setState({
                     pokemon_list: [],
                 })
             }
+            console.log("does nothing")
         }
     }
 
