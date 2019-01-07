@@ -1,5 +1,5 @@
-import mockedPokemonInfo from '../mockedApi/pokemonInfo.json';
-import mockedPokemonSpecies from '../mockedApi/pokemonSpecies.json';
+// import mockedPokemonInfo from '../mockedApi/pokemonInfo.json';
+// import mockedPokemonSpecies from '../mockedApi/pokemonSpecies.json';
 
 export default {
     get : {
@@ -13,28 +13,25 @@ export default {
         },
 
         pokemonSpecie : (api_url, id, cb, aditional_info) => {
-                cb(mockedPokemonSpecies, aditional_info)
-        //     const url_to_fetch = api_url + "pokemon-species/" + id;
-        //     fetch(url_to_fetch)
-        //     .then( res => res.json() )
-        //     .then(json => {
-        //         console.log(json)
-        //         cb(json, aditional_info);
-        //     })
+                // cb(mockedPokemonSpecies, aditional_info)
+            const url_to_fetch = api_url + "pokemon-species/" + id + "/";
+            fetch(url_to_fetch)
+            .then( res => res.json() )
+            .then(json => {
+                cb(json, aditional_info);
+            })
         },
 
         pokemonInfo : (api_url, id, cb, aditional_info) => {
-            cb(mockedPokemonInfo, aditional_info);
-            // const url_to_fetch = api_url + "pokemon/" + id;
-            // fetch(url_to_fetch)
-            // .then(res => {
-            //     console.log(res);
-            //     return res.json();
-            // })
-            // .then(json => {
-            //     console.log(json)
-            //     cb(json, aditional_info);
-            // })
+            // cb(mockedPokemonInfo, aditional_info);
+            const url_to_fetch = api_url + "pokemon/" + id + "/";
+            return fetch(url_to_fetch)
+            .then(res => {
+                return res.json();
+            })
+            .then(json => {
+                cb(json, aditional_info);
+            })
         },
 
         fullPokemonList : (api_url, cb) => {
