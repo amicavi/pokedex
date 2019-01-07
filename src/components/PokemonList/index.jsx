@@ -7,19 +7,42 @@ import Pagination from '../Pagination/index.jsx';
 class PokemonList extends Component {
     state = {
         pokemon_list : [],
+        filtered_pages : [],
         pages : {
-            current_page:0,
+            current_page: 0,
             previous:"",
             next:"",
             count: 0
         }
     }
 
-    paginationClickHandler = (page_offset) => {
-        if (this.props.filtered_list) {
-            console.log("new list!", this.props.filtered_list)
+    getPageInfo = (offset) => {
+        const page_info = {
+            previous : offset > 0 ? (offset - constants.pagination.limit).toString() : null,
+            next : offset <= this.state.count ? (offset + constants.pagination.limit).toString() : null,
+            count : this.state.pages.count
         }
-        this.getPokemonList(page_offset)
+        return page_info;
+    }
+
+    getPagelist = (page_offset) => {
+        const page_index = (page_offset / constants.pagination.limit);
+        return this.state.filtered_pages[page_index];
+    }
+
+    paginationClickHandler = (page_offset) => {
+        if (this.state.filtered_pages.length) {
+            const pages_info = this.getPageInfo(page_offset)
+            const pokemon_list = {
+                results: this.getPagelist(page_offset),
+                previous: pages_info.previous,
+                next: pages_info.next,
+                count: pages_info.count
+            }
+            this.updatePokemonList(pokemon_list, page_offset)
+        } else {
+            this.getPokemonList(page_offset)
+        }
     }
 
     getPokemonID = (url) => {
@@ -28,16 +51,35 @@ class PokemonList extends Component {
         return id;
     }
 
-    updatePokemonList = (pokemon_list, offset) => {
+    updatePokemonList = (pokemon_list, offset, filtered_pages) => {
         this.setState({
             pokemon_list: pokemon_list.results,
+            filtered_pages: filtered_pages ? filtered_pages : this.state.filtered_pages,
             pages : {
                 previous:pokemon_list.previous,
-                current_page: offset ? (offset/50) : 0,
+                current_page: offset ? (offset/constants.pagination.limit): 0,
                 next:pokemon_list.next,
                 count: pokemon_list.count
             }
         })
+    }
+
+    listIntoChuncks = (list) => {
+        let chunked_list = [];
+        let list_to_change = list;
+        while (list_to_change.length > 0) {
+            chunked_list.push(list_to_change.splice(0, constants.pagination.limit));
+        }
+        return chunked_list;
+    }
+
+    prepareToUpdate = (pokemon_list, offset) => {
+        if (this.props.filtered_list.length > constants.pagination.limit) {
+            const chunked_list = this.listIntoChuncks(this.props.filtered_list)
+            this.updatePokemonList(pokemon_list, offset, chunked_list);
+        } else {
+            this.updatePokemonList(pokemon_list, offset);
+        }
     }
 
     addTypeAndImage = (pokemons, offset) => {
@@ -54,7 +96,7 @@ class PokemonList extends Component {
         })
 
         pokemons.results = parsed_list
-        this.updatePokemonList(pokemons, offset);
+        this.prepareToUpdate(pokemons, offset)
     }
 
     getPokemonList = (offset) => {
@@ -68,15 +110,14 @@ class PokemonList extends Component {
         getList(offset)
     }
 
-    componentDidUpdate = (oldProps) => {
+    componentDidUpdate = (oldProps, oldState) => {
         if (oldProps.filtered_input !== this.props.filtered_input) {
             if (this.props.filtered_list.length > 0) {
-                console.log("new list!!!!", this.props.filtered_list)
                 const parsed_list = {
-                    results: this.props.filtered_list,
+                    results: this.props.filtered_list.slice(0,50),
                     current_page:0,
-                    previous:"",
-                    next:"",
+                    previous:null,
+                    next: constants.pagination.limit.toString(),
                     count : this.props.filtered_list.length
                 }
 
@@ -86,10 +127,6 @@ class PokemonList extends Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props.filtered_list)
-        if (this.props.filtered_list.length > 0) {
-            console.log("new list!!!!", this.props.filtered_list)
-        }
         this.getPokemonList();
     }
 
