@@ -21,6 +21,7 @@
 
 .card-img img {
     margin: auto;
+    max-height: 96px;
 }
 
 .card-id {
