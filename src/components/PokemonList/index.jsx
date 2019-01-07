@@ -60,7 +60,7 @@ class PokemonList extends Component {
                 current_page: offset ? (offset/constants.pagination.limit): 0,
                 next:pokemon_list.next,
                 count: pokemon_list.count
-            }
+            },
         })
     }
 
@@ -73,30 +73,50 @@ class PokemonList extends Component {
         return chunked_list;
     }
 
+    sortPokemonList = (list) => {
+        list.sort(function (a, b) {
+            const a_id = parseInt(a.id)
+            const b_id = parseInt(b.id)
+            if (a_id > b_id) {
+                return 1;
+            }
+            if (a_id < b_id) {
+                return -1;
+            }
+            return 0;
+        });
+        return list;
+    }
+
     prepareToUpdate = (pokemon_list, offset) => {
         if (this.props.filtered_list.length > constants.pagination.limit) {
             const chunked_list = this.listIntoChuncks(this.props.filtered_list)
             this.updatePokemonList(pokemon_list, offset, chunked_list);
         } else {
+            pokemon_list.results = this.sortPokemonList(pokemon_list.results)
             this.updatePokemonList(pokemon_list, offset);
         }
     }
 
     addTypeAndImage = (pokemons, offset) => {
-        const parsed_list = [];
+        let parsed_list = [];
         const pushPokemonItem = (info, pokemon) => {
             pokemon.name = pokemon.name.replace(/-/g, " ");
             pokemon.type = info.types[0].type.name.replace(/-/g, " ");
-            // pokemon.image = info.sprites.front_default CORS not allow get image
+            pokemon.image = info.sprites.front_default
+            pokemon.id = this.getPokemonID(pokemon.url)
             parsed_list.push(pokemon);
         }
 
-        pokemons.results.forEach(function(pokemon){
-            FetchHelper.get.pokemonInfo(constants.api_co, pokemon.name, pushPokemonItem, pokemon)
-        })
+        Promise.all(
+            pokemons.results.map((pokemon) => {
+                return FetchHelper.get.pokemonInfo(constants.api_co, pokemon.name, pushPokemonItem, pokemon)
+            })
+        ).then(() => {
+            pokemons.results = parsed_list
+            this.prepareToUpdate(pokemons, offset);
+        });
 
-        pokemons.results = parsed_list
-        this.prepareToUpdate(pokemons, offset)
     }
 
     getPokemonList = (offset) => {
@@ -151,7 +171,7 @@ class PokemonList extends Component {
                             <PokemonCard
                                 key = {pokemon.name}
                                 pokemon = {pokemon}
-                                id = {this.getPokemonID(pokemon.url)}
+                                id = {pokemon.id}
                                 onSelection = {selection_handler}
                             />
                         )}
