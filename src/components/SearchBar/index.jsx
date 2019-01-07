@@ -18,7 +18,7 @@ class SearchBar extends Component {
             return regex.test(pokemon.url);
         });
 
-        this.props.onNewList(filtered_list)
+        this.props.onNewList(filtered_list, id);
     }
 
     filterPokemonsByName = (name) => {
@@ -27,7 +27,7 @@ class SearchBar extends Component {
             return regex.test(pokemon.name);
         });
 
-        this.props.onNewList(filtered_list)
+        this.props.onNewList(filtered_list, name);
     }
 
     handleChange = (e) => {
